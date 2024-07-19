@@ -1,6 +1,5 @@
 html {background-color: #FFF9E4}
 
-
 h1, h2 {
     color: #403E39;
     font-family: 'Bagel Fat One', cursive;
@@ -12,5 +11,6 @@ p {
     cursor:pointer;
 }
 
-
-
+.description {
+    width: 600px;
+}
