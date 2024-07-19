@@ -1,6 +1,16 @@
+html {background-color: #FFF9E4}
+
+
+h1, h2 {
+    color: #403E39;
+    font-family: 'Bagel Fat One', cursive;
+    font-size: 400;
+}
+
 p {
     background-color: aliceblue;
     cursor:pointer;
 }
 
-html {background-color: #FFF9E4} //
+
+
