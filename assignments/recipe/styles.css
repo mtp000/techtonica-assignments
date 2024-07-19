@@ -3,7 +3,11 @@ html {background-color: #FFF9E4}
 h1, h2 {
     color: #403E39;
     font-family: 'Bagel Fat One', cursive;
-    font-size: 400;
+    font-size: 2em;
+}
+
+h1 {
+    font-size: 5em;
 }
 
 p {
