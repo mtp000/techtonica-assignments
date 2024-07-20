@@ -1,7 +1,7 @@
 html {background-color: #FFF9E4}
 
 h1, h2 {
-    color: #403E39;
+    color: #807C72;
     font-family: 'Bagel Fat One', cursive;
     font-size: 2em;
 }
@@ -11,10 +11,23 @@ h1 {
 }
 
 p {
-    background-color: aliceblue;
+    background-color: #DFDAC8;
     cursor:pointer;
 }
 
 .description {
     width: 600px;
+}
+
+.left {
+    width: 600px;
+    float: left;
+    margin-top: 37px;
+}
+
+.right {
+    width: 600px;
+    float: left;
+    margin-left: 30px;
+
 }
