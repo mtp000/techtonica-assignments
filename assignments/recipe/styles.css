@@ -25,19 +25,55 @@ p {
     width: 600px;
 }
 
+.top {
+    margin-left: 30px;
+}
+
 .left {
     width: 600px;
     float: left;
     margin-top: 37px;
+    margin-left: 30px;
 }
 
 .right {
     width: 600px;
     float: left;
     margin-left: 30px;
-
 }
 
-.checked {
-    text-decoration: line-through;
+img {
+    width: 100%
+}
+
+@media (max-width: 600px) {
+    img {
+        width: 32%
+    }
+    .left {
+        width: 400px;
+        float: left;
+        margin-top: 37px;
+    }
+
+    .right {
+        width: 400px;
+        float: left;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+   img {
+    width: 70%
+   }
+   .left {
+       width: 500px;
+       float: left;
+       margin-top: 37px;
+   }
+
+   .right {
+       width: 500px;
+       float: left;
+   }
 }
