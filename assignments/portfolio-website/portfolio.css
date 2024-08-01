@@ -2,3 +2,18 @@
   font-size: 2em;
   color: black;
 }
+
+#contact-content {
+  display: none;
+  font-size: x-small;
+}
+
+#contact-form {
+  font-size: 0;
+}
+
+.contact-header {
+  font-size: medium;
+}
+
+
