@@ -19,13 +19,12 @@ Reset for new game
 
 
 
-//player's markers
-let currentPlayer = 'x'
 
 //*for 2x2 gameboard
 const gameboardArr = [
-  ['', ''],
-  ['', '']
+  ['', '', ''],
+  ['', '', ''],
+  ['', '', '']
 ];
 
 // MAIN LOGIC OF GAME,
@@ -40,41 +39,90 @@ function checkWin() {
   const upperBound = gameboardArr.length - 1;
   // lowerBound of gameboardArr = [0][0]
   const lowerBound = 0;
+  
 
   //check vertical pattern (j is same)
-    //check up (subtract i to lowerBound>)
+   count = 1; 
+    // Check up (subtract i to lowerBound>)
+    for (let i = row - 1; i >= 0 && gameboardArr[i][col] === mark; i--) {
+        count++;
+    }
+    // Check down (add i to upperBound)
+    for (let i = row + 1; i < n && gameboardArr[i][col] === mark; i++) {
+        count++;
+    }
+    if (count === n) return true; // Win if all cells in the column are marked
 
 
 
-    //check down (add i to upperBound)
-  count = 1;
 
 
 
-  //check horizontal pattern (i is same)
-    // check left (subtract j to 0)
+  
+  // Check horizontal pattern (i is same)
+    count = 1; // Reset for horizontal check
+    // Check left (subtract j to 0)
+    for (let j = col - 1; j >= 0 && gameboardArr[row][j] === mark; j--) {
+        count++;
+    }
+    // Check right (add j to upperBound)
+    for (let j = col + 1; j < n && gameboardArr[row][j] === mark; j++) {
+        count++;
+    }
+    if (count === n) return true; // Win if all cells in the row are marked
 
 
 
-    //check right (add j to upperBound)
+  
+
+   //check main diagonal (top-left to bottom-right)
+    if (row === col) { // Only if on the main diagonal
+        count = 1; // Reset for diagonal check
+        // go up-left (subtract i and j equally)
+        for (let i = row - 1, j = col - 1; i >= 0 && j >= 0 && gameboardArr[i][j] === mark; i--, j--) {
+            count++;
+        }
+        //go down-right (add i and j equally)
+        for (let i = row + 1, j = col + 1; i < n && j < n && gameboardArr[i][j] === mark; i++, j++) {
+            count++;
+        }
+        if (count === 3) return true; // Win if all cells in the diagonal are marked
+    }
 
 
-  //check diagonal pattern
-    // go up-left (subtract i and j equally)
 
 
 
-    //go down-right (add i and j equally)
 
 
+   // Check anti-diagonal (top-right to bottom-left)
+    if (row + col === n - 1) { // Only if on the anti-diagonal
+        count = 1; // Reset for diagonal check
+        // Check top-right
+        for (let i = row - 1, j = col + 1; i >= 0 && j < n && gameboardArr[i][j] === mark; i--, j++) {
+            count++;
+        }
+        // Check bottom-left
+        for (let i = row + 1, j = col - 1; i < n && j >= 0 && gameboardArr[i][j] === mark; i++, j--) {
+            count++;
+        }
+        if (count === 3) return true; // Win if all cells in the diagonal are marked
+    }
 
-  if (count === 3) return true;
+  return false;
 }
+
+
+
+
+
+
+
 
 //*
   //*if mark inside arr index is not one of player's marks, move is valid
 function checkMoveValidity() {
-  if (gameboardArr[i][j] === '') {
+  if (gameboardArr[row][col] === '') {
     return true;
   } else {
     return false;
@@ -89,22 +137,22 @@ function checkBoardFull() {
     //*iterates through columns to grab a particular cell, j coordinate
     for (j = 0, j < gameboardArr[i].length, j++) {
       //*if each index is not empty, return true
-      if (gameboardArr[i][j] !=== '') {
-        return true;
-      } else {
+      if (gameboardArr[i][j] === '') {
         return false;
-      }
+      } 
     }
   }
+  return true;
 };
 
 
-
-
-
 //turn tracker
-function turnTracker() {
+let currentPlayer = 'X';
 
+function turnTracker() {
+  currentPlayer = currentPlayer === 'X' ? 'O' : 'X'; // Switch turn
+  return currentPlayer;
+}
 };
 
 //reset game
