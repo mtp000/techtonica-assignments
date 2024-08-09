@@ -40,7 +40,6 @@ function checkWin() {
   // lowerBound of gameboardArr = [0][0]
   const lowerBound = 0;
   
-
   //check vertical pattern (j is same)
    count = 1; 
     // Check up (subtract i to lowerBound>)
@@ -52,10 +51,6 @@ function checkWin() {
         count++;
     }
     if (count === n) return true; // Win if all cells in the column are marked
-
-
-
-
 
 
   
@@ -72,8 +67,6 @@ function checkWin() {
     if (count === n) return true; // Win if all cells in the row are marked
 
 
-
-  
 
    //check main diagonal (top-left to bottom-right)
     if (row === col) { // Only if on the main diagonal
@@ -121,7 +114,7 @@ function checkWin() {
 
 //*
   //*if mark inside arr index is not one of player's marks, move is valid
-function checkMoveValidity() {
+function checkMoveValidity(row, col) {
   if (gameboardArr[row][col] === '') {
     return true;
   } else {
@@ -157,8 +150,16 @@ function turnTracker() {
 
 //reset game
 function resetGame() {
+  // Clear the game board
+  for (let i = 0; i < gameboardArr.length; i++) {
+    for (let j = 0; j < gameboardArr[i].length; j++) {
+      gameboardArr[i][j] = '';
+    }
+  }
+  // Reset the turn
+  currentPlayer = 'X';
+}
 
-};
 
 //check if move is a winning move 
 //!! only checks last move and all it's corresponding cells that could result in a win
