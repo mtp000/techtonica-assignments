@@ -33,6 +33,44 @@ function mainLogic() {
 
 };
 
+//check if move is a winning move 
+//!! only checks last move and all it's corresponding cells that could result in a win
+function checkWin() {
+  //***upperBound of gameboardArr =[gameboardArr.length][gameboardArr.length]
+  const upperBound = gameboardArr.length - 1;
+  // lowerBound of gameboardArr = [0][0]
+  const lowerBound = 0;
+
+  //check vertical pattern (j is same)
+    //check up (subtract i to lowerBound>)
+
+
+
+    //check down (add i to upperBound)
+  count = 1;
+
+
+
+  //check horizontal pattern (i is same)
+    // check left (subtract j to 0)
+
+
+
+    //check right (add j to upperBound)
+
+
+  //check diagonal pattern
+    // go up-left (subtract i and j equally)
+
+
+
+    //go down-right (add i and j equally)
+
+
+
+  if (count === 3) return true;
+}
+
 //*
   //*if mark inside arr index is not one of player's marks, move is valid
 function checkMoveValidity() {
