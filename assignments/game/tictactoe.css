@@ -1,4 +1,9 @@
-h1 {
+body {
+  font-family: 'Times New Roman', sans-serif;
+  color: #000000;
+}
+
+h1, h2 {
   text-align: center;
 }
 
@@ -23,10 +28,24 @@ h1 {
   align-items: center;
 }
 
+.cell:hover {
+  background-color: #dcd0e5;
+}
+
 #restart-button {
   display: block;
   margin-left: auto;
   margin-right: auto;
   height: 40px;
   width: 150px;
+  background-color: #dcd0e5;
+  border: 1px solid #000000;
+  border-radius: 40px;
+  font-size: 18px;
+  font: "Times New Roman";
+}
+
+#restart-button:hover {
+  background-color: #000000;
+  color: #FFFFFF;
 }

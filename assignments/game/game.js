@@ -20,7 +20,7 @@ Reset for new game
 
 
 
-//*for 2x2 gameboard
+//*for 3x3 gameboard
 const gameboardArr = [
   ['', '', ''],
   ['', '', ''],
@@ -34,12 +34,14 @@ function mainLogic() {
 
 //check if move is a winning move 
 //!! only checks last move and all it's corresponding cells that could result in a win
-function checkWin() {
+function checkWin(row, col, mark) {
   //***upperBound of gameboardArr =[gameboardArr.length][gameboardArr.length]
   const upperBound = gameboardArr.length - 1;
   // lowerBound of gameboardArr = [0][0]
   const lowerBound = 0;
   
+
+
   //check vertical pattern (j is same)
    count = 1; 
     // Check up (subtract i to lowerBound>)
@@ -50,10 +52,10 @@ function checkWin() {
     for (let i = row + 1; i < n && gameboardArr[i][col] === mark; i++) {
         count++;
     }
-    if (count === n) return true; // Win if all cells in the column are marked
+    if (count === 3) return true; // Win if all cells in the column are marked
 
 
-  
+
   // Check horizontal pattern (i is same)
     count = 1; // Reset for horizontal check
     // Check left (subtract j to 0)
@@ -61,10 +63,10 @@ function checkWin() {
         count++;
     }
     // Check right (add j to upperBound)
-    for (let j = col + 1; j < n && gameboardArr[row][j] === mark; j++) {
+    for (let j = col + 1; j < 3 && gameboardArr[row][j] === mark; j++) {
         count++;
     }
-    if (count === n) return true; // Win if all cells in the row are marked
+    if (count === 3) return true; // Win if all cells in the row are marked
 
 
 
@@ -76,7 +78,7 @@ function checkWin() {
             count++;
         }
         //go down-right (add i and j equally)
-        for (let i = row + 1, j = col + 1; i < n && j < n && gameboardArr[i][j] === mark; i++, j++) {
+        for (let i = row + 1, j = col + 1; i < 3 && j < 3 && gameboardArr[i][j] === mark; i++, j++) {
             count++;
         }
         if (count === 3) return true; // Win if all cells in the diagonal are marked
@@ -84,19 +86,15 @@ function checkWin() {
 
 
 
-
-
-
-
    // Check anti-diagonal (top-right to bottom-left)
-    if (row + col === n - 1) { // Only if on the anti-diagonal
+    if (row + col === 3 - 1) { // Only if on the anti-diagonal
         count = 1; // Reset for diagonal check
         // Check top-right
-        for (let i = row - 1, j = col + 1; i >= 0 && j < n && gameboardArr[i][j] === mark; i--, j++) {
+        for (let i = row - 1, j = col + 1; i >= 0 && j < 3 && gameboardArr[i][j] === mark; i--, j++) {
             count++;
         }
         // Check bottom-left
-        for (let i = row + 1, j = col - 1; i < n && j >= 0 && gameboardArr[i][j] === mark; i++, j--) {
+        for (let i = row + 1, j = col - 1; i < 3 && j >= 0 && gameboardArr[i][j] === mark; i++, j--) {
             count++;
         }
         if (count === 3) return true; // Win if all cells in the diagonal are marked
@@ -107,12 +105,7 @@ function checkWin() {
 
 
 
-
-
-
-
-
-//*
+//
   //*if mark inside arr index is not one of player's marks, move is valid
 function checkMoveValidity(row, col) {
   if (gameboardArr[row][col] === '') {
@@ -126,9 +119,9 @@ function checkMoveValidity(row, col) {
 //*check if game is over/stalemate
 function checkBoardFull() {
   //*iterates through rows, our i coordinate
-  for (let i = 0; i < gameboardArr.length, i++) {
+  for (let i = 0; i < gameboardArr.length; i++) {
     //*iterates through columns to grab a particular cell, j coordinate
-    for (j = 0, j < gameboardArr[i].length, j++) {
+    for (j = 0, j < gameboardArr[i].length; j++) {
       //*if each index is not empty, return true
       if (gameboardArr[i][j] === '') {
         return false;
@@ -145,20 +138,55 @@ let currentPlayer = 'X';
 function turnTracker() {
   currentPlayer = currentPlayer === 'X' ? 'O' : 'X'; // Switch turn
   return currentPlayer;
-}
 };
 
 //reset game
 function resetGame() {
-  // Clear the game board
+  // Clear the game board array
   for (let i = 0; i < gameboardArr.length; i++) {
     for (let j = 0; j < gameboardArr[i].length; j++) {
       gameboardArr[i][j] = '';
     }
   }
+
   // Reset the turn
   currentPlayer = 'X';
 }
+
+cell.addEventListener('click', () => {
+  console.log(`Cell [${row}, ${col}] clicked`);
+  // Rest of the code...
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const cells = document.querySelectorAll('.cell');
+  const restartButton = document.getElementById('restart-button');
+  
+  cells.forEach(cell => {
+    cell.addEventListener('click', () => {
+      const row = parseInt(cell.dataset.row);
+      const col = parseInt(cell.dataset.col);
+      
+      if (checkMoveValidity(row, col)) {
+        gameboardArr[row][col] = currentPlayer;
+        cell.textContent = currentPlayer;
+        
+        if (checkWin(gameboardArr, row, col, currentPlayer)) {
+          alert(`${currentPlayer} wins!`);
+          resetGame();
+        } else if (checkBoardFull()) {
+          alert("It's a draw!");
+          resetGame();
+        } else {
+          turnTracker(); // Switch turns
+        }
+      }
+    });
+  });
+
+  restartButton.addEventListener('click', resetGame);
+});
+
 
 
 //check if move is a winning move 
