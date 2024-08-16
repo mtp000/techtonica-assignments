@@ -4,12 +4,27 @@ import './Board.css';
 import Square from './Square';
 
 export default function Board() {
+  const [currentPlayer, setCurrentPlayer] = useState("X");
   const [squares, setSquares] = useState(Array(9).fill(null));
 
   function handleClick(i) {
+    if (squares[i]) {
+      return;
+    }
     const nextSquares = squares.slice();
-    nextSquares[i] = 'X';
+    nextSquares[i] = currentPlayer;
     setSquares(nextSquares);
+    advanceCurrentPlayer();
+    //console.log("clicked");
+  }
+
+  function advanceCurrentPlayer() {
+    //update currentPlayer
+    if (currentPlayer == "X") {
+      setCurrentPlayer("O");
+    } else {
+      setCurrentPlayer("X");
+    }
   }
 
   return (
