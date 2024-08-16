@@ -1,8 +1,17 @@
 import React from 'react';
 import './Square.css';
 
-function Square() {
-  return <button className="square">1</button>;
-};
+export default function Square({ value }) {
+  function handleClick() {
+    console.log("clicked")
+  }
 
-export default Square;
+  return (
+    <button
+      className="square"
+      onClick={handleClick}
+    >
+      {value}
+    </button>
+  );
+};
