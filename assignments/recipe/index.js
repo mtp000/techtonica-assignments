@@ -16,3 +16,12 @@ for (let i = 0; i < checkboxes.length; i++) {
     }
   })
 }
+
+document.getElementById('changeColorButtonWithPicker').addEventListener('click', function() {
+
+  let userColorWithPicker = document.getElementById('colorPicker').value;
+
+  const body = document.querySelector('body');
+  body.style.backgroundColor = userColorWithPicker;
+  
+});
