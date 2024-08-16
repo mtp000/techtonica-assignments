@@ -4,8 +4,8 @@
         <!-- Required meta tags-->
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <!--Bootstrap CSS-->
-        <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <title> My Tuyen's Mapo Tofu Recipe </title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,21 +16,24 @@
                 text-decoration: line-through;
             }
         </style>
-
+    </head>
         <body>
-            <div class="top"> 
+            <div class="container">
+            <div class="row"> 
+                <input type="button" id="changeColorButtonWithPicker" value="Change Background Color with Color Picker" />
+                <input type='color' id='colorPicker'>
                 <h1> Mapo Tofu </h1>
                 <p class="recipe-description"> Mapo Tofu is a popular Chinese dish from Sichuan Province, where spicy food is king and the signature spice of the
                 region – the Sichuan Peppercorn – gives dishes a unique “numbing” effect. </p>
             </div>
             
-            <div class="left">
-                <div> 
+            <div class="row">
+                <div class="col-sm"> 
                     <img class="recipe-img" src="https://thewoksoflife.com/wp-content/uploads/2019/06/mapo-tofu-12.jpg" alt=" mapo tofu" width="600 px" />
                     <p> Original Recipe: <a href="https://thewoksoflife.com/wp-content/uploads/2019/06/mapo-tofu-12.jpg">The Woks of Life</a> </p>
                 </div>
 
-                <div> 
+                <div class="col-md"> 
                     <h2> Ingredients </h2>
                     <ul class = "ingredients-list">
                         <li> 
@@ -99,7 +102,7 @@
                 </div>
            </div>
 
-           <div class="right"> 
+           <div class="row"> 
                 <div> 
                     <h2 class="instructions-list"> Instructions </h2>
                     <ol> 
@@ -127,6 +130,8 @@
                     <a href="https://omnivorescookbook.com/authentic-mapo-tofu/">Omnivore's Cookbook: Authentic Mapo Tofu</a>
                 </div>
             </div>
+            
+            </div>
             <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
                 integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
                 crossorigin="anonymous"></script>
@@ -138,7 +143,6 @@
                 crossorigin="anonymous"></script>
             <script src="index.js"></script>
         
-    </body>
-
-    </head>
+        </body>
+    
 </html>
