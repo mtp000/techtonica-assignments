@@ -1,14 +1,18 @@
 import React from 'react';
 import { useState } from 'react';
-import './Board.css';
+
 import Square from './Square';
+import CheckWin from './CheckWin';
+import './Board.css';
+
 
 export default function Board() {
   const [currentPlayer, setCurrentPlayer] = useState("X");
   const [squares, setSquares] = useState(Array(9).fill(null));
 
   function handleClick(i) {
-    if (squares[i]) {
+    //if there is a winner OR square is filled, do nothing
+    if (winner || squares[i]) {
       return;
     }
     const nextSquares = squares.slice();
@@ -20,15 +24,25 @@ export default function Board() {
 
   function advanceCurrentPlayer() {
     //update currentPlayer
-    if (currentPlayer == "X") {
+    if (currentPlayer === "X") {
       setCurrentPlayer("O");
     } else {
       setCurrentPlayer("X");
     }
   }
+  
+  const winner = CheckWin(squares);
+  let status;
+    if (winner) {
+      status = 'Winner: ' + winner;
+    } else {
+      status = 'Next player: ' + currentPlayer;
+    }
+
 
   return (
     <>
+      <div className="status">{status}</div>
       <div className="board-row">
         <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
         <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
