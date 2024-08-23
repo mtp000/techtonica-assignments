@@ -68,19 +68,38 @@ app.get("/books/:isbn", (req, appRes) => {
 });
 
 
-
 //Create (POST)
-app.post("/books/newreservation", async (req, res) => {
-  console.log('Making new book reservation ...')
+// app.post("/books/newreservation", async (req, appRes) => {
+//   console.log('Making new book reservation ...')
 
-  const newBook = {
-    isbn: req.body.isbn;
+//     const newBook = req.body;
+
+//       pool.query('SELECT * FROM books WHERE is_available = true;', (err, dataRes) => {
+//       if (err) {
+//         console.error(err);
+//         appRes.status(500).json({ error: 'Error making reservation' });
+//         return;
+//       }
+//       appRes.json(dataRes.rows);
+//     });
+
+// });
+
+app.post("/books/newreservation",async (req, res) => {
+  const { isbn, title, author, last_reserved_at, is_available } = req.body;
+  try {
+
+    const result = await pool.query(
+      "INSERT INTO books (isbn, title, author, last_reserved_at, is_available) VALUES ($1, $2, $3, $4, $5) RETURNING *",
+      [isbn, title, author, last_reserved_at, is_available]
+    );
+    const newBook = result.rows; 
+    res.send('Book reservation made');
+  } 
+  catch (err) {
+    res.json({error: 'Internal Server Error' });
   }
-  books.push(newBook);
-  res.json(books);
-
-})
-
+});
 
 
 //Update (PUT)
