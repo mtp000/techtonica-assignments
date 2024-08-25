@@ -1,7 +1,7 @@
 import express from 'express';
 import fetch from 'node-fetch';
-import I_LOVE from './config.js';
-console.log("I love ", I_LOVE);
+import eventbrite_API from './config.js';
+console.log("API key: ", eventbrite_API);
 
 const app = express();
 const port = 3000;
