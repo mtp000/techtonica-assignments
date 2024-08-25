@@ -1,5 +1,8 @@
-const express = require('express');
-const fetch = require('node-fetch');
+import express from 'express';
+import fetch from 'node-fetch';
+import I_LOVE from './config.js';
+console.log("I love ", I_LOVE);
+
 const app = express();
 const port = 3000;
 
