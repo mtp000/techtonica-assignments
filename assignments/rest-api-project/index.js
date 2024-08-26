@@ -68,23 +68,29 @@ app.get("/books/:isbn", (req, appRes) => {
   });
 });
 
-app.get("/books/:title", (req, appRes) => {
-  let title = req.params.title;
-  pool.query('SELECT * FROM books WHERE title = $1 and is_available = $2', [title, true], (err, dataRes) => {
-    if (err) {
-      console.error(err);
-      appRes.status(500).json({ error: 'Internal Server Error' });
-      return;
-    }
-    appRes.json(dataRes.rows);
-  });
-});
+// app.get("/books/:title", (req, appRes) => {
+//   let title = req.params.title;
+//   pool.query('SELECT * FROM books WHERE title = $1 and is_available = $2', [title, true], (err, dataRes) => {
+//     if (err) {
+//       console.error(err);
+//       appRes.status(500).json({ error: 'Internal Server Error' });
+//       return;
+//     }
+//     appRes.json(dataRes.rows);
+//   });
+// });
 
 
 
-
-app.post("/books/newbook",async (req, res) => {
-  const { isbn, title, author, last_reserved_at, is_available } = req.body;
+app.post("/books/newbook", async (req, res) => {
+  console.log(req);
+  //const { isbn, title, author, last_reserved_at, is_available } = req.body;
+  const isbn = req.body[0].isbn;
+  const title = req.body[0].title;
+  const author = req.body[0].author;
+  const last_reserved_at = req.body[0].last_reserved_at;
+  const is_available = req.body[0].is_available;
+  console.log(isbn, title, author, last_reserved_at, is_available);
   try {
 
     const result = await pool.query(
@@ -98,8 +104,6 @@ app.post("/books/newbook",async (req, res) => {
     res.json({error: 'Internal Server Error' });
   }
 });
-
-
 
 
 // app.post("/books/newreservation", async (req, appRes) => {
@@ -118,11 +122,47 @@ app.post("/books/newbook",async (req, res) => {
 
 // });
 
-//Update (PUT)
-// app.put("/books/reservebook", async (req, res) => {
+//Delete (DELETE)
+app.delete ("/books/delete", async (req, res) => {
+  console.log(req);
+  const isbn = req.body[0].isbn;
+  console.log(isbn);
+  try {
+    const result = await pool.query(
+      "DELETE FROM books WHERE isbn = $1",
+      [isbn]
+    );
+    if (result.rowCount === 0) {
+      return res.status(404).send('Book intended for deletion is not found');
+    }
+    res.send('Book has been deleted');
+  } catch (err) {
+    res.send(err.message);
+  }
+});
 
-// })
 
-// //Delete (DELETE)
-// app.delete("/books/delete")
+
+//Put (UPDATE)
+app.put("/books/reservebook", async (req, res) => {
+  //const { title, author, last_reserved_at, is_available } = req.body;
+  const isbn = req.body[0].isbn;
+  const last_reserved_at = req.body[0].last_reserved_at;
+  //console.log(isbn, title, author, last_reserved_at, is_available);
+  // get the book resrevation
+  //const { isbn } = req.params;
+  try {
+    const result = await pool.query(
+      "UPDATE books SET last_reserved_at=$1, is_available=$2 WHERE isbn= $3 RETURNING *",
+      [last_reserved_at, false, isbn]
+    );
+  //returns error if book reservation doesn't exist
+    if (result.rowCount === 0) {
+      return res.status(404).send('Book reservation not found');
+    }
+    res.send('Book reservation has been updated');
+  } catch (err) {
+    res.send(err.message);
+  }
+});
 
