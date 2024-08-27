@@ -37,4 +37,3 @@ function removeDuplicates() {
 }
 
 console.log(removeDuplicates());
-
