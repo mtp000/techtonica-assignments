@@ -122,24 +122,32 @@ app.post("/books/newbook", async (req, res) => {
 
 // });
 
+
 //Delete (DELETE)
 app.delete ("/books/delete", async (req, res) => {
   console.log(req);
   const isbn = req.body[0].isbn;
   console.log(isbn);
-  try {
-    const result = await pool.query(
-      "DELETE FROM books WHERE isbn = $1",
-      [isbn]
-    );
-    if (result.rowCount === 0) {
-      return res.status(404).send('Book intended for deletion is not found');
+
+    let result;
+    if (isbn === null) {
+      // Handle the case where the ISBN is null
+      result = await pool.query(
+        "DELETE FROM books WHERE isbn IS NULL"
+      );
+    } else {
+      // Handle the case where the ISBN is not null
+      result = await pool.query(
+        "DELETE FROM books WHERE isbn = $1",
+        [isbn]
+      );
     }
+
     res.send('Book has been deleted');
   } catch (err) {
     res.send(err.message);
   }
-});
+);
 
 
 
