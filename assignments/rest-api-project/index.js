@@ -11,18 +11,16 @@ const PORT = 5001;
 app.use(bodyParser.json());
 app.listen(PORT, () => console.log(`Server running on port: http://localhost:${PORT}`));
 
-
+//set up database connection
 const pool = new Pool({
   host: 'localhost',
   database: 'library',
   port: 5432,
   max: 20, // maximum number of connections in the pool
-  idleTimeoutMillis: 30000, //n how long a cliet is allowed to remain idle before being closed
+  idleTimeoutMillis: 30000, //n how long a client is allowed to remain idle before being closed
   connectionTimeoutMillis: 2000, // how long to wait for a connection to be established
 });
 
-
-//set up database connection
 
 
 //Read (GET) routes
@@ -41,20 +39,6 @@ app.get("/books", (req, appRes) => {
   });
 });
 
-// app.get("/clients", (req, res) => {
-//   res.json(clients);
-// });
-
-
-// app.get("/clients/:clientCardNumber", (req, res) => {
-//   let parameters = req.params;
-//   console.log(parameters);
-//   let cardNumber = parameters.clientCardNumber;
-//   console.log(cardNumber);
-
-//   clients[1].name = 'zendaya holland';
-//     res.json(clients);
-// });
 
 app.get("/books/:isbn", (req, appRes) => {
   let isbnNum = req.params.isbn;
@@ -81,10 +65,8 @@ app.get("/books/:isbn", (req, appRes) => {
 // });
 
 
-
 app.post("/books/newbook", async (req, res) => {
   console.log(req);
-  //const { isbn, title, author, last_reserved_at, is_available } = req.body;
   const isbn = req.body[0].isbn;
   const title = req.body[0].title;
   const author = req.body[0].author;
@@ -104,23 +86,6 @@ app.post("/books/newbook", async (req, res) => {
     res.json({error: 'Internal Server Error' });
   }
 });
-
-
-// app.post("/books/newreservation", async (req, appRes) => {
-//   console.log('Making new book reservation ...')
-
-//     const newBook = req.body;
-
-//       pool.query('SELECT * FROM books WHERE is_available = true;', (err, dataRes) => {
-//       if (err) {
-//         console.error(err);
-//         appRes.status(500).json({ error: 'Error making reservation' });
-//         return;
-//       }
-//       appRes.json(dataRes.rows);
-//     });
-
-// });
 
 
 //Delete (DELETE)
@@ -153,12 +118,10 @@ app.delete ("/books/delete", async (req, res) => {
 
 //Put (UPDATE)
 app.put("/books/reservebook", async (req, res) => {
-  //const { title, author, last_reserved_at, is_available } = req.body;
   const isbn = req.body[0].isbn;
   const last_reserved_at = req.body[0].last_reserved_at;
-  //console.log(isbn, title, author, last_reserved_at, is_available);
+
   // get the book resrevation
-  //const { isbn } = req.params;
   try {
     const result = await pool.query(
       "UPDATE books SET last_reserved_at=$1, is_available=$2 WHERE isbn= $3 RETURNING *",
