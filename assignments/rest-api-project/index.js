@@ -90,6 +90,7 @@ app.post("/books/newbook", async (req, res) => {
 
 //Delete (DELETE)
 app.delete ("/books/delete", async (req, res) => {
+try {
   console.log(req);
   const isbn = req.body[0].isbn;
   console.log(isbn);
@@ -109,10 +110,10 @@ app.delete ("/books/delete", async (req, res) => {
     }
 
     res.send('Book has been deleted');
-  } catch (err) {
+  }  catch (err) {
     res.send(err.message);
   }
-);
+});
 
 
 
