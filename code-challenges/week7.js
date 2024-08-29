@@ -46,7 +46,8 @@ function removeDuplicates(arr) {
   const mySet = new Set;
   //iterator through array, add each element to empty set
   arr.forEach((element) => mySet.add(element));
-  return mySet;
+  const newArr = Array.from(mySet);
+  return newArr;
 }
 
 exArr = [1, 1, 2, 2, 3,];
