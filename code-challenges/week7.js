@@ -14,7 +14,7 @@ console.log(findLargerNumber(0, 0));
 */
 
 
-/* WEDNESDAY */
+/* WEDNESDAY 
 //Write a JavaScript function that takes two arrays as input 
 //and returns a new array that contains all elements from both input arrays. 
 //Use the spread operator (...) to achieve this.
@@ -31,17 +31,24 @@ function combineArrays(arr1, arr2) {
 numArr = [1, 2, 3];
 strArr = [];
 console.log(combineArrays(strArr, numArr));
+*/
 
 
-
-/* THURSDAY 
+/* THURSDAY */
 //Write a JavaScript function that takes an array of numbers as input
 //& returns a new array with all duplicates removed
 //Use the Set object to achieve this.
 
-function removeDuplicates() {
-
+//input = arr of nums
+//output = new arr, no duplicates
+function removeDuplicates(arr) {
+  //creat new empty set
+  const mySet = new Set;
+  //iterator through array, add each element to empty set
+  arr.forEach((element) => mySet.add(element));
+  return mySet;
 }
 
-console.log(removeDuplicates());
-*/
+exArr = [1, 1, 2, 2, 3,];
+exArr2 = ['a', 'b', 'b', 'c'];
+console.log(removeDuplicates(exArr));
