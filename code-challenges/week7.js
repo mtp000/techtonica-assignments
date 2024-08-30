@@ -43,11 +43,11 @@ console.log(combineArrays(strArr, numArr));
 //output = new arr, no duplicates
 function removeDuplicates(arr) {
   //creat new empty set
-  const mySet = new Set;
+  const mySet = new Set(arr);
   //iterator through array, add each element to empty set
-  arr.forEach((element) => mySet.add(element));
-  const newArr = Array.from(mySet);
-  return newArr;
+  // arr.forEach((element) => mySet.add(element));
+  // const newArr = Array.from(mySet);
+  return mySet;
 }
 
 exArr = [1, 1, 2, 2, 3,];
