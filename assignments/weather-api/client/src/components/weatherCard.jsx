@@ -14,3 +14,5 @@ function WeatherCard(props) {
     </div>
   );
 }
+
+export default WeatherCard;
