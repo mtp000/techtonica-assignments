@@ -35,5 +35,10 @@ const roundedUp = roundUp(myNums, 100);
 
 
 /* Thursday */
+//Create a function named filterObjects that takes two arguments: an array of objects (data) 
+//and a string representing a property name (propertyName). 
+//The function should return a new array containing only the objects from the original array 
+//whose value for the specified property matches the provided value. 
+//If no objects match the criteria, the function should return an empty array.
 
 
