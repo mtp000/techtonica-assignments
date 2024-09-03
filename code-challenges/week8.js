@@ -11,24 +11,23 @@ function randomArr(max) {
   } while (arr.length < 10);
   return arr;
 }
-  console.log(randomArr(100));
-
+const myNums = randomArr(100);
+console.log(myNums);
 
 
 function roundDown(arr, max) {
-  const randomNum = arr(max)
-  return randomNum.map(Math.floor); 
+  return arr.map(Math.floor); 
 }
-  const roundedDown = roundDown(randomArr, 100);
+
+const roundedDown = roundDown(myNums, 100);
   console.log(roundedDown);
 
 
 
 function roundUp(arr, max) {
-  const randomNum = arr(max);
-  return randomNum.map(Math.ceil);
+  return arr.map(Math.ceil);
 }
-  const roundedUp = roundUp(randomArr, 100);
+const roundedUp = roundUp(myNums, 100);
   console.log(roundedUp);
 
 /* Wednesday */
