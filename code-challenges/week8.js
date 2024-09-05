@@ -1,5 +1,5 @@
 
-/* Tuesday math methods (ceil, floor, min, max) */
+/* Tuesday math methods (ceil, floor, min, max) 
 // Generate an array of 10 random integers between 1 and 100. 
 // Then, round down half of the numbers to the nearest integer 
 // using Math.floor and round up the other half using Math.ceil.  
@@ -29,6 +29,7 @@ function roundUp(arr, max) {
 }
 const roundedUp = roundUp(myNums, 100);
   console.log(roundedUp);
+*/
 
 /* Wednesday */
 
@@ -36,9 +37,32 @@ const roundedUp = roundUp(myNums, 100);
 
 /* Thursday */
 //Create a function named filterObjects that takes two arguments: an array of objects (data) 
-//and a string representing a property name (propertyName). 
+//and a string representing a property name (propertyName), and a value
 //The function should return a new array containing only the objects from the original array 
 //whose value for the specified property matches the provided value. 
 //If no objects match the criteria, the function should return an empty array.
 
+//input: array of objects (data), string (propertyName), (value)
+//output: new array of objects
+ function filterObjects(data, propertyName, value) {
+  const resultArr = [];
+  resultArr = arr.filter((object) => {
+    //compare (propertyName: value) with object's (key: value)
+  } )
+  return resultArr;
+ }
 
+ const data = [
+  {
+    name: "Ben",
+    age: 12, 
+  },
+  {
+    name: "Kat",
+    age: 13
+  },
+  {
+    name: "Ken",
+    age: 12
+  }
+ ];
