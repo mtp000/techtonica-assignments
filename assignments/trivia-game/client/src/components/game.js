@@ -18,6 +18,17 @@ const Game = () => {
         loadData();
     }, [])
 
+    const handleAnswerClick= (userAnswer) => {
+        //handle index for the question
+        if (userAnswer === questions[index].correct_answer) {
+            //change the background color of button clicked
+            //increment one on counter
+            return
+        } else {
+            return 
+        }
+    };
+
     return (
         <div className="Container">
             <div className='correct-answer-count'>
@@ -26,7 +37,13 @@ const Game = () => {
             {/* iterates through each index of questions state */}
             {questions.map((question, index) => {
                 {/** assigns prop called key and question to component question card */}
-                return <QuestionCard key={index} question={question} questionNum={index + 1} answer={question.correct_answer} />
+                return <QuestionCard 
+                key={index} 
+                question={question} 
+                questionNum={index + 1} 
+                answer={question.correct_answer}
+                onAnswerClick={(userAnswer) => handleAnswerClick(index, userAnswer)} 
+                />
             })}
         </div>
     )

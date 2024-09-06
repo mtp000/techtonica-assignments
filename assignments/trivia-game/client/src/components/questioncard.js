@@ -7,8 +7,8 @@ const QuestionCard = (props) => {
         <div className='question-text'>{props.question.question}</div>
         <div className='answer-section'>
           <div className='question-text'>{props.answer}</div>
-          <button>True</button>
-          <button>False</button>
+          <button onClick={() => onAnswerClick(true)}>True</button>
+          <button onClick={() => onAnswerClick(false)}>False</button>
         </div>
       </div>
     );
