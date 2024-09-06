@@ -36,7 +36,7 @@ app.get("/quiz", async (req,res) => {
 
 
   // //hardcode the game response for testing reasons to don't saturate my API call. 
-app.get('/api/game', (req, res) =>{
+app.get('/quiz/fake', (req, res) =>{
     res.json(fakedata);
 })
 
