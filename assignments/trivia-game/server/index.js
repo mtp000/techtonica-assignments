@@ -23,15 +23,15 @@ app.get("/", (req, res) => {
 
 // Make the GET request for the GAME Api for grabbing all the questions 
 app.get("/quiz", async (req,res) => {
-  let dataObj;
   try {
     const response = await fetch("https://opentdb.com/api.php?amount=10&type=boolean");
     const dataObj = await response.json();
-    console.log(dataObj);
+    res.json(dataObj);
+    //console.log(dataObj);
   } catch(error) {
     console.log("error:", error);
   }
-  res.send(dataObj);
+  
 });
 
 
