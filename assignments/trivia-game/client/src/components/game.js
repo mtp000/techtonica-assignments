@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import QuestionCard from "./questioncard";
 
-const Game = (props) => {
-
+const Game = () => {
+    //loads questions to a state
     const [questions, setQuestions] = useState([]);
 
     const loadData = () => {
@@ -20,11 +20,13 @@ const Game = (props) => {
 
     return (
         <div className="Container">
-            <div className='question-count'>
-                <span>Question 1</span>/{questions.length}
+            <div className='correct-answer-count'>
+                <span>Correct Answers </span>/{questions.length}
             </div>
+            {/* iterates through each index of questions state */}
             {questions.map((question, index) => {
-                return <QuestionCard key={index} question={question} />
+                {/** assigns prop called key and question to component question card */}
+                return <QuestionCard key={index} question={question} questionNum={index + 1} answer={question.correct_answer} />
             })}
         </div>
     )
