@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import QuestionCard from "./questioncard";
 
 const Game = () => {
@@ -18,16 +18,6 @@ const Game = () => {
         loadData();
     }, [])
 
-    const handleAnswerClick= (userAnswer) => {
-        //handle index for the question
-        if (userAnswer === questions[index].correct_answer) {
-            //change the background color of button clicked
-            //increment one on counter
-            return
-        } else {
-            return 
-        }
-    };
 
     return (
         <div className="Container">
