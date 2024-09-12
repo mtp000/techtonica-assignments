@@ -1,7 +1,7 @@
-CREATE DATABASE techtonica;
+CREATE DATABASE eventonica;
 
 CREATE TABLE events (
-  id smallint PRIMARY KEY, 
+  id smallint serial PRIMARY KEY, 
   title varchar(200) NOT NULL,
   location varchar(200) NOT NULL
 );
