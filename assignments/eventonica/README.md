@@ -16,7 +16,7 @@
 
 4. Go to the client folder (`cd .. and cd client`) and run the command `npm install`
 
-5. This template has two servers already working. Both servers should start simultaneously, or "concurrently", by running `npm run dev` from within the server directory in your terminal. Please note that your backend server will run from port 8080, and your frontend React server will run from port 3000 .
+5. This template has two servers already working. Both servers should start simultaneously, or "concurrently", by running `npm run dev` from within the server directory in your terminal. Please note that your backend server will run from **port 8080**, and your frontend React server will run from **port 3000** . Your database server will run on **port 5432**.
 
 6. To add a Postgres DB - you will need another terminal window for this part
 

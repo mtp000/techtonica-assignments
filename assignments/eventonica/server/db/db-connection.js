@@ -1,9 +1,8 @@
-const { Pool } = require('pg');
+// server/db/db-connection.js;
+import pg from 'pg';
+const { Pool } = pg;
 const db = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: (process.env.DATABASE_SSL != "false") && {
-    rejectUnauthorized: false
-  }
+  connectionString: 'postgres://localhost:5432/eventonica'
 });
 
-module.exports = db;
+export default db;
