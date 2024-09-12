@@ -1,8 +1,10 @@
 //This is the minimal express server. 
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const path = require('path');
+import express from 'express';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import path from 'path';
+import { Pool } from 'pg';
+
 require('dotenv').config();
 const db = require('./db/db-connection.js'); 
 
