@@ -26,38 +26,46 @@ app.get("/", (req, res) => {
   });
 
 
-app.get('/api/events', async (req, res) =>{
-
+app.get('/events', async (req, res) =>{
     //real connection with the DB eventonica
     try{
-        const { rows: events } = await db.query('SELECT * FROM events');
-        res.send(events);
+      const { rows: events } = await db.query('SELECT * FROM events');
+      console.log({ events})
+      res.send(events);
 
     } catch(error){
-        console.log(error);
-        return res.status(400).json({error});
-
+      console.log(error);
+      return res.status(400).json({error});
     }
-
-    //hardcode the events response for testing reasons. This call has one more event that the real DB 
-    // try{
-    //     const events = [
-
-    //         {id: 1, title: 'Women in Tech Techtonica Panel', location: 'Overland Park Convention Center'},
-    //         {id: 2, title: 'Japanese Cultural Education', location: 'Seattle Convention Center'},
-    //         {id: 3, title: "Haven 90's Party Night Club", location: 'Hilton Hotel Kansas City'},
-    //         {id: 4, title: 'Comedy Night at the Station', location: 'SF Hilton Hotel'},
-    //         {id: 5, title: 'A Decadent Arts Experience', location: 'West Ridge Mall'},
-    //         {id: 6, title: 'Techtonica Classroom Course', location: 'Techtonica HQ'}
-    //       ];
-    //     res.json(events);
-
-    // } catch(error){
-    //     console.log(error);
-    // }   
-    
 })
 
+app.post('/events/edit', async (req, res) => {
+  /*syntax for accessing req.body is for array of objects*/
+  console.log(req.body);
+  const title = req.body[0].title;
+  const location = req.body[0].location;
+  console.log(title, location);
+  try { 
+    const result = await db.query(
+      `INSERT INTO events (title, location)
+      VALUES ($1, $2)
+      RETURNING *`, [title, location]
+    );
+
+    /* pg library for Node.js always returns result of query as object with properties, one of which being rows */
+    //newEvent is now an object with properties title, location (columns from the events table)
+    const newEvent = result.rows[0]; //[0] accesses first event from rows array
+    res.status(201).json({
+      message: `New Event: ${newEvent.title} added`,
+      event: newEvent
+    });
+  } 
+  
+  catch(error) {
+    console.log(error);
+    return res.status(400).json({error});
+  }
+})
 
 
 app.listen(PORT, () => console.log(`Hola! Server running on Port http://localhost:${PORT}`));
