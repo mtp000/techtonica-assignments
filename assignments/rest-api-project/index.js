@@ -35,6 +35,7 @@ app.get("/books", (req, appRes) => {
       appRes.json({error: 'Internal Server Error' });
       return;
     }
+    console.log(dataRes);
     appRes.json(dataRes.rows);
   });
 });
@@ -48,6 +49,7 @@ app.get("/books/:isbn", (req, appRes) => {
       appRes.status(500).json({ error: 'Internal Server Error' });
       return;
     }
+    console.log(dataRes)
     appRes.json(dataRes.rows);
   });
 });
