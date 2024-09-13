@@ -7,7 +7,7 @@ function Events() {
     const [events, setEvents] = useState([]);
 
     const getRequest = () => {
-      fetch("http://localhost:8080/api/events")
+      fetch("http://localhost:8080/events")
       .then((response) => response.json())
       .then(events => {
         setEvents(events); 
