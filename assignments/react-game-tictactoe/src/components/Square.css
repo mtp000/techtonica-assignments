@@ -1,0 +1,11 @@
+ .square {
+  width: 120px;
+  height: 120px;
+  border: 1px solid #D3D3D3;
+  background-color: #F5F5F5;
+  font-size: 40px;
+} 
+
+.square:hover {
+  background-color: #dcd0e5;
+} 

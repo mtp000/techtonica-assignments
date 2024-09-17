@@ -1,0 +1,11 @@
+.board-row: after {
+  margin-left: auto;
+  margin-right: auto;
+  width: 375px;
+  height: 375px;
+}
+
+.status {
+  margin-bottom: 10px;
+  font-size: 40px;;
+}
