@@ -2,7 +2,7 @@
 import pg from 'pg';
 const { Pool } = pg;
 const db = new Pool({
-  connectionString: 'postgres://localhost:5432/[database_name]'
+  connectionString: 'postgres://localhost:5432/contacts'
 });
 
 export default db;

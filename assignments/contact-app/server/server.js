@@ -22,40 +22,38 @@ app.use(bodyParser.json());
 
 // //creates an endpoint for the route `/`
 app.get("/", (req, res) => {
-    res.json("Hello Techtonica 2023 H2 to your Server for Eventonica");
+    res.json("My Tuyen Contact App");
   });
 
 
-app.get('/api/events', async (req, res) =>{
+app.get('/contacts', async (req, res) =>{
+    console.log("Received request for contacts");
+    //real connection with the DB 
+    try{
+        const { rows: contacts } = await db.query('SELECT * FROM contacts');
+        console.log("Contacts fetched:", contacts, "Row count:", rowCount);
+        res.send(contacts);
 
-    // //real connection with the DB eventonica
-    // try{
-    //     const { rows: events } = await db.query('SELECT * FROM events');
-    //     res.send(events);
+    } catch (error) {
+        console.error("Error fetching contacts:", error); // Log the entire error
+        return res.status(400).json({ error: error.message });
+    }
+    
+})
 
-    // } catch(error){
-    //     console.log(error);
-    //     return res.status(400).json({error});
-
-    //}
-
+app.get('/test', async (req, res) => {
     //hardcode the events response for testing reasons. This call has one more event that the real DB 
     try{
-        const events = [
-
-            {id: 1, title: 'Women in Tech Techtonica Panel', location: 'Overland Park Convention Center'},
-            {id: 2, title: 'Japanese Cultural Education', location: 'Seattle Convention Center'},
-            {id: 3, title: "Haven 90's Party Night Club", location: 'Hilton Hotel Kansas City'},
-            {id: 4, title: 'Comedy Night at the Station', location: 'SF Hilton Hotel'},
-            {id: 5, title: 'A Decadent Arts Experience', location: 'West Ridge Mall'},
-            {id: 6, title: 'Techtonica Classroom Course', location: 'Techtonica HQ'}
+        const contacts = [ 
+              {id: 1, name: 'Mom', email: 'mom@gmail.com', phone: '678-233-2455', notes: 'likes fruit}' },
+              {id: 2, name: 'Dad', email: 'dad900@gmail.com', phone: '678-011-0301', notes: 'only texts'},
+              {id: 3, name: 'Michael', email: 'michaelp@gmail.com', phone: '678-532-0713', notes: 'eats everything'}
           ];
-        res.json(events);
+        res.json(contacts);
 
     } catch(error){
         console.log(error);
     }   
-    
 })
 
 
