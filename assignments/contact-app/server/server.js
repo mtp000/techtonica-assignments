@@ -25,18 +25,25 @@ app.get("/", (req, res) => {
     res.json("My Tuyen Contact App");
   });
 
+  db.connect()
+  .then(() => console.log('Connected to the database'))
+  .catch(err => console.error('Connection error', err.stack));
+
 
 app.get('/contacts', async (req, res) =>{
     console.log("Received request for contacts");
     //real connection with the DB 
-    try{
-        const { rows: contacts } = await db.query('SELECT * FROM contacts');
-        console.log("Contacts fetched:", contacts, "Row count:", rowCount);
+    const client = await db.connect();
+    console.log(client);
+    try {
+        const { rows: contacts } = await client.query('SELECT * FROM contacts;');
         res.send(contacts);
 
     } catch (error) {
         console.error("Error fetching contacts:", error); // Log the entire error
         return res.status(400).json({ error: error.message });
+    } finally {
+        client.release(); // Release the client back to the pool
     }
     
 })

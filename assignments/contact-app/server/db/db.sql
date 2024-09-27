@@ -1,5 +1,7 @@
 CREATE DATABASE contacts;
 
+\c contacts;
+
 CREATE TABLE contacts (
   contact_id serial PRIMARY KEY, 
   name varchar(150) NOT NULL,
