@@ -1,42 +1,48 @@
-# Quick-setup 
+# Project Title
+Simple overview of use/purpose.
 
-#### Once you have successfully setup this template and initial database, the view will look like this:
+## Description
+An in-depth paragraph about your project and overview of use.
 
-![Initial View of the project](https://raw.githubusercontent.com/Yosolita1978/screenshoots/50a5573f21c1265d20d838a36b98588f9b4eefce/2023/H1/Screen%20Shot%202023-03-09%20at%208.03.32%20PM.png)
-### Your First Express and React App with a DB connection
+## Getting Started
+### Dependencies
+* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
+* ex. Windows 10
+### Installing
+* How/where to download your program
+* Any modifications needed to be made to files/folders
+### Executing program
+* How to run the program
+* Step-by-step bullets
+```
+code blocks for commands
+```
+## Help
+Any advise for common problems or issues.
+```
+command to run if program contains helper info
+```
+## Authors
+Contributors names and contact info
 
-1. Go to your source directory in your terminal and run the command `git clone https://github.com/Yosolita1978/2023EventonicaTemplate.git (https://github.com/Yosolita1978/EventonicaTemplateWithVite.git) <NAMENEWDIRECTORY>`
-![You will see something like this in your terminal.]
+ex. Dominique Pizzie
+ex. @DomPizzie
 
-> <img width="768" alt="Screen Shot 2023-03-10 at 11 10 34 AM" src="https://user-images.githubusercontent.com/102179075/224608432-5e3d18bd-7cf5-4576-8b3f-2e903106abe1.png">
+## Version History
+* 0.2
+  * Various bug fixes and optimizations
+  * See commit change or See release history
+* 0.1
+  * Initial Release
 
-2. To clean your folder from the owner's git, run the command `rm -rf .git` inside the folder <NAMENEWDIRECTORY>. Then re-initialize as the owner with `git init`.
+## License
+This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
 
-3. Go to the server folder in the project (`cd server`) and run the command `npm install`
+## Acknowledgments
+Inspiration, code snippets, etc.
 
-4. Go to the client folder (`cd .. and cd client`) and run the command `npm install`
-
-5. This template has two servers already working. Both servers should start simultaneously, or "concurrently", by running `npm run dev` from within the server directory in your terminal. Please note that your backend server will run from port 8080, and your frontend React server will run from port 3000 .
-
-6. To add a Postgres DB - you will need another terminal window for this part
-
-6.1 Inside your server directory create a `.env` file and copy there the values that are in `.envexample`
-
-* In a different terminal window go to the psql terminal with the comand `psql`
-* Inside the psql prompt create your database eventonica with the command `create database eventonica;` (don't forget the semicolon!)
-
-![You will see something like this](https://raw.githubusercontent.com/Yosolita1978/screenshoots/b6b7e47b8ccda4b9f709d20e94cacb6506d4dc13/2023/H1/Screen%20Shot%202023-03-13%20at%2011.13.13%20AM.png)
-
-Back in the terminal window with the project go inside the server directory and run the command `psql -d eventonica -f db.sql` that will create a table `events` with 5 rows inside your db eventonica. 
-![This will be the result of that command](https://raw.githubusercontent.com/Yosolita1978/screenshoots/b6b7e47b8ccda4b9f709d20e94cacb6506d4dc13/2023/H1/Screen%20Shot%202023-03-13%20at%2011.12.29%20AM.png)
-
-Your DB should look like this inside the psql terminal
-![Your DB should look like this](https://raw.githubusercontent.com/Yosolita1978/screenshoots/696689a627eb5ca206b5a2eaebec7cc1efa15ffc/2023/H1/Screen%20Shot%202023-03-09%20at%208.25.54%20PM.png)
-
-# Links that you will need
-
-* The instructions for [pg](https://node-postgres.com/apis/pool)  
-* Setup [postgres correctly](https://github.com/Techtonica/curriculum/blob/main/databases/installing-postgresql.md).
-
-
-
+* [awesome-readme](https://github.com/matiassingers/awesome-readme)
+* [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
+* [dbader](https://github.com/dbader/readme-template)
+* [zenorocha](https://gist.github.com/zenorocha/4526327)
+* [fvcproductions](https://gist.github.com/fvcproductions/1bfc2d4aecb01a834b46)
