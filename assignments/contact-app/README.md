@@ -5,18 +5,21 @@ Simple overview of use/purpose.
 An in-depth paragraph about your project and overview of use.
 
 ## Getting Started
-### Dependencies
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
-### Installing
-* How/where to download your program
-* Any modifications needed to be made to files/folders
-### Executing program
-* How to run the program
-* Step-by-step bullets
-```
-code blocks for commands
-```
+  ### Dependencies
+  * Describe any prerequisites, libraries, OS version, etc., needed before installing program.
+  * ex. Windows 10
+  ### Installing
+  * How/where to download your program
+  * Any modifications needed to be made to files/folders
+  ### Executing program
+    #### Setting Up Database
+    1. open postgres terminal with command ```psql```
+    2. With the command below, run the dq.sql file that will create a databse called contacts and a table called contacts. The file will autopopulate with 3 sample contacts.
+    ```
+    \i db.sql
+    ```
+    
+
 ## Help
 Any advise for common problems or issues.
 ```
