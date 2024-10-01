@@ -30,7 +30,7 @@ app.get("/", (req, res) => {
   .catch(err => console.error('Connection error', err.stack));
 
 
-app.get('/contacts', async (req, res) =>{
+app.get('/api/contacts', async (req, res) =>{
     console.log("Received request for contacts");
     //real connection with the DB 
     const client = await db.connect();

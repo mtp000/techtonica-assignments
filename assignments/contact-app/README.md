@@ -13,8 +13,9 @@ An in-depth paragraph about your project and overview of use.
   * Any modifications needed to be made to files/folders
   ### Executing Program
   #### Setting Up Database
-  1. Open postgres terminal with command ```psql```
-  2. With the command below, run the dq.sql file that will create a databse called contacts and a table called contacts. The file will autopopulate with 3 sample contacts. ```\i db.sql```
+  1. Go to file db-connection and change user and password as required to access psql.
+  2. Open postgres terminal with command ```psql```
+  3. With the command below, run the dq.sql file that will create a databse called contacts and a table called contacts. The file will autopopulate with 3 sample contacts. ```\i db.sql```
     
 
 ## Help

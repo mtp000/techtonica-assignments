@@ -1,9 +1,15 @@
 // server/db/db-connection.js;
 import pg from 'pg';
 const { Pool } = pg;
+
 const db = new Pool({
-  connectionString: 'postgres://localhost:5432/contacts'
+    user: 'postgres',  // Check this value
+    host: 'localhost',
+    database: 'contacts',
+    password: 'your_password',
+    port: 5432,
 });
+
 
 export default db;
 
