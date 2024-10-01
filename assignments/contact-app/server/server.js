@@ -31,10 +31,10 @@ app.get("/", (req, res) => {
 
 
 app.get('/api/contacts', async (req, res) =>{
-    console.log("Received request for contacts");
+    //console.log("Received request for contacts");
     //real connection with the DB 
     const client = await db.connect();
-    console.log(client);
+    //console.log(client);
     try {
         const { rows: contacts } = await client.query('SELECT * FROM contacts;');
         res.send(contacts);
@@ -48,20 +48,38 @@ app.get('/api/contacts', async (req, res) =>{
     
 })
 
-app.get('/test', async (req, res) => {
-    //hardcode the events response for testing reasons. This call has one more event that the real DB 
-    try{
-        const contacts = [ 
-              {id: 1, name: 'Mom', email: 'mom@gmail.com', phone: '678-233-2455', notes: 'likes fruit}' },
-              {id: 2, name: 'Dad', email: 'dad900@gmail.com', phone: '678-011-0301', notes: 'only texts'},
-              {id: 3, name: 'Michael', email: 'michaelp@gmail.com', phone: '678-532-0713', notes: 'eats everything'}
-          ];
-        res.json(contacts);
+app.get('/api/contacts/:id', async(req, res) => {
+    const client = await db.connect();
+    const contactID = parseInt(req.params.id, 10);
 
-    } catch(error){
-        console.log(error);
-    }   
-})
+    try {
+        const result = await client.query('SELECT * FROM contacts WHERE contact_id = $1', [contactID]);
+
+        if (result.rows.length > 0) {
+            res.json(result.rows[0]);  // Send the contact data if found
+        } else {
+            res.status(404).json({ message: 'Contact not found' });  // Return 404 if not found
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({message: 'Error fetching this individual contact' });
+    }
+});
+
+// app.get('/test', async (req, res) => {
+//     //hardcode the events response for testing reasons. This call has one more event that the real DB 
+//     try{
+//         const contacts = [ 
+//               {id: 1, name: 'Mom', email: 'mom@gmail.com', phone: '678-233-2455', notes: 'likes fruit}' },
+//               {id: 2, name: 'Dad', email: 'dad900@gmail.com', phone: '678-011-0301', notes: 'only texts'},
+//               {id: 3, name: 'Michael', email: 'michaelp@gmail.com', phone: '678-532-0713', notes: 'eats everything'}
+//           ];
+//         res.json(contacts);
+
+//     } catch(error){
+//         console.log(error);
+//     }   
+// })
 
 
 
