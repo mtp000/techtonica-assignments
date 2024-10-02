@@ -1,11 +1,13 @@
 // src/App.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import UserList from './components/UserList';
+import UserForm from './components/UserForm';
+import UserDetail from './components/UserDetail';
 
 function App() {
     const [users, setUsers] = useState([]);
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
 
     useEffect(() => {
         fetchUsers();
@@ -16,11 +18,9 @@ function App() {
         setUsers(response.data);
     };
 
-    const addUser = async () => {
-        const response = await axios.post('http://localhost:5000/users', { name, email });
+    const addUser = async (newUser) => {
+        const response = await axios.post('http://localhost:5000/users', newUser);
         setUsers([...users, response.data]);
-        setName('');
-        setEmail('');
     };
 
     const deleteUser = async (id) => {
@@ -29,30 +29,16 @@ function App() {
     };
 
     return (
-        <div>
-            <h1>User Tracker</h1>
-            <input
-                type="text"
-                placeholder="Name"
-                value={name}
-                onChange={e => setName(e.target.value)}
-            />
-            <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-            />
-            <button onClick={addUser}>Add User</button>
-            <ul>
-                {users.map(user => (
-                    <li key={user.id}>
-                        {user.name} - {user.email}
-                        <button onClick={() => deleteUser(user.id)}>Delete</button>
-                    </li>
-                ))}
-            </ul>
-        </div>
+        <Router>
+            <div>
+                
+                <Routes>
+                    <Route path="/" element={<UserList users={users} deleteUser={deleteUser} />} />
+                    <Route path="/add-user" element={<UserForm addUser={addUser} />} />
+                    <Route path="/users/:id" element={<UserDetail />} />
+                </Routes>
+            </div>
+        </Router>
     );
 }
 
