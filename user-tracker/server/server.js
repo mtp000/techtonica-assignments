@@ -1,8 +1,9 @@
 // server.js
 const express = require('express');
 const cors = require('cors');
-const { Pool } = require('pg');
 const dotenv = require('dotenv');
+const sequelize = require('./db/db.js'); //import sequelize instance
+const User = require('./models/User'); //import user model
 
 dotenv.config();
 
@@ -12,24 +13,16 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-const pool = new Pool({
-    connectionString: process.env.DATABASE_URL,
+// Sync the database: creates tables automatically based on table model
+sequelize.sync().then(() => {
+    console.log('Database & tables created!');
 });
 
-// User class to represent a user
-class User {
-    constructor(id, name, email) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-    }
-}
 
 // API endpoints
 app.get('/users', async (req, res) => {
     try {
-        const result = await pool.query('SELECT * FROM users');
-        const users = result.rows.map(row => new User(row.id, row.name, row.email));
+        const users = await User.findAll();
         res.json(users);
     } catch (err) {
         console.error(err);
@@ -40,8 +33,7 @@ app.get('/users', async (req, res) => {
 app.post('/users', async (req, res) => {
     const { name, email } = req.body;
     try {
-        const result = await pool.query('INSERT INTO users (name, email) VALUES ($1, $2) RETURNING *', [name, email]);
-        const user = new User(result.rows[0].id, result.rows[0].name, result.rows[0].email);
+        const user = await User.create( {name, email} );
         res.status(201).json(user);
     } catch (err) {
         console.error(err);
@@ -52,7 +44,7 @@ app.post('/users', async (req, res) => {
 app.delete('/users/:id', async (req, res) => {
     const { id } = req.params;
     try {
-        await pool.query('DELETE FROM users WHERE id = $1', [id]);
+        await User.destroy({ where: {id} });
         res.status(204).send();
     } catch (err) {
         console.error(err);
