@@ -30,6 +30,17 @@ app.get('/users', async (req, res) => {
     }
 });
 
+app.get('/users/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const user = await User.findByPk(id);
+        res.json(user);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server error');
+    }
+});
+
 app.post('/users', async (req, res) => {
     const { name, email } = req.body;
     try {
