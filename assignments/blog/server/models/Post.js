@@ -3,7 +3,7 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../database/db');
 
 //Model for each blog posts: abstraction/ represents table in database
-const post = sequelize.define('Posts', {
+const Post = sequelize.define('posts', {
     //model attributes corrrespond to tablel columns
     id: {
         type: DataTypes.INTEGER, //integer = sql int, serial w/ autoIncrement
@@ -24,4 +24,4 @@ const post = sequelize.define('Posts', {
     },
 });
 
-module.exports = post;
+module.exports = Post;
