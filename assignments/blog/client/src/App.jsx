@@ -18,7 +18,7 @@ function App() {
           <Header />
 
           <Routes>
-            <Route path="/home" element={<>
+            <Route path="/" element={<>
               <PostsList /> 
             </>} />
             <Route path="/posts/:id" element={
