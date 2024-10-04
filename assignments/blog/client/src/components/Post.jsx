@@ -25,6 +25,7 @@ function Post() {
         <>
             <h2>{post.title}</h2>
             <p>By: {post.author}</p>
+            <p>Sentiment Score: {post.sentimentScore}</p>
             <p>{post.content}</p>
         </>
     )

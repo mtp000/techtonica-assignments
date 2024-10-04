@@ -22,6 +22,12 @@ const Post = sequelize.define('posts', {
         type: DataTypes.TEXT,
         allowNull: false
     },
+    sentimentScore: {
+        type: DataTypes.INTEGER,
+    },
+    sentimentComparative: {
+        type: DataTypes.FLOAT,
+    }
 });
 
 module.exports = Post;
