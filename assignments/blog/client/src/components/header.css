@@ -45,8 +45,8 @@
     border-color: #333;
 }
 
-/* Write button styling */
-.write-button {
+/* Header button styling */
+.header-button {
     padding: 8px 16px;
     background-color: #000;
     color: #fff;

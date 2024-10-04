@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 import Header from './components/Header';
 import PostsList from './components/PostsList';
 import Post from './components/Post';
+import PostForm from './components/PostForm';
 
 
 function App() {
@@ -15,12 +15,21 @@ function App() {
   return (
     <>
       <Router> 
-        <Header />
+          <Header />
 
           <Routes>
-            <Route path="/home" element={<PostsList />} />
-            <Route path="/posts/:id" element={<Post />} />
-            <Route path="/write" />
+            <Route path="/home" element={<>
+              <PostsList /> 
+            </>} />
+            <Route path="/posts/:id" element={
+              <>
+              <Post />
+              </>} />
+            <Route path="/write" element={
+              <>
+                <PostForm />
+              </>
+            } />
           </Routes>
         
       </Router>

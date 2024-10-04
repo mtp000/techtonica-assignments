@@ -20,7 +20,7 @@ function Header() {
             
 
             <Link to="/write"> 
-                <button className="write-button">Write</button>
+                <button className="header-button">Write</button>
             </Link>
             
         </>
