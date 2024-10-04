@@ -3,6 +3,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const sequelize = require('./database/db.js'); //import sequelize instance
 const Post = require('./models/Post'); //import Post model
+const analyzeSentiment = require('./analyzeSentiment'); 
 
 dotenv.config();
 
@@ -52,7 +53,15 @@ app.get('/posts/:id', async (req, res) => {
 app.post('/write', async (req, res) => {
     const { title, author, content } = req.body;
     try {
-        const newPost = await Post.create( {title, author, content} );
+        const sentimentData = analyzeSentiment(content);
+
+        const newPost = await Post.create( {
+            title, 
+            author, 
+            content, 
+            sentimentScore: sentimentData.score, 
+            sentimentComparative: sentimentData.comparative
+        } );
         res.status(201).json(newPost);
     } catch (err) {
         console.error(err);
