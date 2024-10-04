@@ -1,0 +1,30 @@
+import React from "react";
+import { Link, Route } from "react-router-dom";
+import "./header.css";
+
+function Header() {
+
+    return (
+        <>
+            {/* Website title linking to homepage */}
+            <Link to="/" className="header-title">
+                <span>MyBlog</span>
+            </Link>
+
+            <div className="search-box">
+                <input 
+                type="text"
+                placeholder="Search..."
+                />
+            </div>
+            
+
+            <Link to="/write"> 
+                <button className="write-button">Write</button>
+            </Link>
+            
+        </>
+    )
+};
+
+export default Header;
