@@ -5,11 +5,11 @@
 CREATE DATABASE library;
 
  create table books (
-   isbn char(13),
-   title varchar(150),
-   author varchar (50),
+   isbn char(13) NOT NULL,
+   title varchar(150) NOT NULL,
+   author varchar (50) NOT NULL,
    last_reserved_at date,
-   is_available boolean
+   is_available boolean NOT NULL
  );
 
 

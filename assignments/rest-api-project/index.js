@@ -6,7 +6,7 @@ import pg from 'pg';
 const { Pool } = pg
 
 const app = express();
-const PORT = 5001;
+const PORT = 6666;
 
 app.use(bodyParser.json());
 app.listen(PORT, () => console.log(`Server running on port: http://localhost:${PORT}`));
@@ -139,4 +139,3 @@ app.put("/books/reservebook", async (req, res) => {
     res.send(err.message);
   }
 });
-
