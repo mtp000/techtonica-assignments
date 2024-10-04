@@ -32,7 +32,7 @@ app.get('/posts/:id', async (req, res) => {
     const { id } = req.params;
     try {
         const post = await Post.findByPk(id);
-        res.json(user);
+        res.json(post);
     } catch (err) {
         console.error(err);
         res.status(500).send('Server error');
@@ -41,7 +41,7 @@ app.get('/posts/:id', async (req, res) => {
 
 
 // post a new blog post
-app.post('/posts', async (req, res) => {
+app.post('/write', async (req, res) => {
     const { title, author, content } = req.body;
     try {
         const newPost = await Post.create( {title, author, content} );
@@ -58,7 +58,7 @@ app.delete('/posts/:id', async (req, res) => {
     const { id } = req.params;
     try {
         await Post.destroy({ where: {id} });
-        res.status(204).send();
+        res.status(204).send('Post deleted.');
     } catch (err) {
         console.error(err);
         res.status(500).send('Server error');
