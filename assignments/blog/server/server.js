@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
-const sequelize = require('./database/db.js'); //import sequelize instance
 const Post = require('./models/Post'); //import Post model
 
 dotenv.config();
@@ -11,13 +10,6 @@ const port = process.env.PORT;
 
 app.use(cors());
 app.use(express.json());
-
-// Sync the database: creates tables automatically based on model
-sequelize.sync().then(() => {
-    console.log('Tables created!');
-});
-
-
 
 
 
@@ -49,7 +41,7 @@ app.get('/posts/:id', async (req, res) => {
 
 
 // post a new blog post
-app.post('/write', async (req, res) => {
+app.post('/posts/write', async (req, res) => {
     const { title, author, content } = req.body;
     try {
         const newPost = await Post.create( {title, author, content} );

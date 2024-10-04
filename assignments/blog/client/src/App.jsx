@@ -25,7 +25,7 @@ function App() {
               <>
               <Post />
               </>} />
-            <Route path="/write" element={
+            <Route path="/posts/write" element={
               <>
                 <PostForm />
               </>
