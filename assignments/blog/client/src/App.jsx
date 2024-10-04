@@ -19,7 +19,7 @@ function App() {
 
           <Routes>
             <Route path="/home" element={<PostsList />} />
-            <Route path="/posts/:id" element={<Post />}/>
+            <Route path="/posts/:id" element={<Post />} />
             <Route path="/write" />
           </Routes>
         
