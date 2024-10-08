@@ -12,7 +12,7 @@ function PostForm() {
         e.preventDefault();
 
         try {
-            const response = await axios.post("http://localhost:5000/write", {
+            const response = await axios.post("http://localhost:5000/posts/write", {
                 title,
                 author,
                 content,
@@ -34,7 +34,7 @@ function PostForm() {
             
             <form onSubmit={handleSubmit}>
                 <button className="header-button" type="submit">Publish</button>
-                <div className="input-box">
+                <div className="input-box" required>
                     <input 
                         type="text"
                         placeholder="Title"
@@ -47,14 +47,14 @@ function PostForm() {
                 <div className="input-box">
                     <input
                         type="text"
-                        placeholder="Author"
+                        placeholder="Author (optional)"
                         value={author}
                         onChange={(e) => setAuthor(e.target.value)}
                         required
                     />
                 </div>
                 
-                <div className="text-box">
+                <div className="text-box" required>
                     <textarea
                         value={content}
                         placeholder="Tell your story..."

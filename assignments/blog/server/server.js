@@ -50,7 +50,7 @@ app.get('/posts/:id', async (req, res) => {
 
 
 // post a new blog post
-app.post('/write', async (req, res) => {
+app.post('/posts/write', async (req, res) => {
     const { title, author, content } = req.body;
     try {
         const sentimentData = analyzeSentiment(content);
