@@ -1,63 +1,95 @@
-/* Header container styling */
-.header {
+/* Header container */
+header {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    padding: 10px 20px;
-    border-bottom: 1px solid #ddd;
-    background-color: #fff;
-    font-family: Arial, sans-serif;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff; /* White background for the header */
+    border-bottom: 1px solid #e5e5e5; /* Light gray border at the bottom */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
-/* Website title styling */
+/* Title styling */
 .header-title {
-    text-decoration: none;
-    color: #000;
+    font-family: 'Times New Roman', serif;
+    font-size: 26px;
     font-weight: bold;
-    font-size: 24px;
+    color: #333; /* Dark color for the title */
+    text-decoration: none;
 }
 
-.header-title h1 {
-    margin: 0;
-    font-size: inherit;
+.header-title:hover {
+    color: #1a73e8; /* Medium-style blue on hover */
 }
 
-/* Search box styling */
-.search-box {
-    flex: 1;
+/* Search wrapper to center the search bar */
+.search-wrapper {
+    flex-grow: 1; /* Makes the search bar container flexible */
     display: flex;
-    justify-content: center;
-    margin: 0 20px;
+    justify-content: center; /* Centers the search box within this area */
 }
 
 .search-box input {
-    width: 100%;
-    max-width: 300px;
-    padding: 8px 12px;
-    font-size: 16px;
+    width: 300px;
+    padding: 10px 20px;
     border: 1px solid #ccc;
-    border-radius: 20px;
-    outline: none;
-    transition: border-color 0.2s;
+    border-radius: 30px;
+    background-color: #fafafa;
+    font-size: 16px;
+    color: #333;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle inner shadow */
+    transition: border-color 0.2s ease-in-out;
 }
 
 .search-box input:focus {
-    border-color: #333;
+    border-color: #1a73e8; /* Blue border on focus */
+    outline: none;
 }
 
-/* Header button styling */
+/* Write button styling */
 .header-button {
-    padding: 8px 16px;
-    background-color: #000;
-    color: #fff;
-    font-size: 16px;
-    font-weight: bold;
+    background-color: #1a73e8;
+    color: white;
+    padding: 10px 20px;
     border: none;
-    border-radius: 20px;
+    border-radius: 30px; /* Rounded button */
+    font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease;
 }
 
-.write-button:hover {
-    background-color: #333;
+.header-button:hover {
+    background-color: #1558c0; /* Darker blue on hover */
+}
+
+/* Align header elements horizontally */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+@media (max-width: 768px) {
+    header {
+        padding: 15px 20px;
+    }
+
+    .search-box input {
+        width: 200px;
+    }
+
+    .header-title {
+        font-size: 22px;
+    }
+
+    .header-button {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
 }

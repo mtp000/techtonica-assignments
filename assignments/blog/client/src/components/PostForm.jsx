@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from 'axios';
+import "./postForm.css"
 
 function PostForm() {
     const [title, setTitle] = useState("");

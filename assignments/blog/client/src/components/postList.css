@@ -1,0 +1,63 @@
+/* Container for all posts */
+.posts-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* Responsive grid layout */
+    gap: 24px; /* Space between posts */
+    padding: 40px 20px; /* Add padding around the posts */
+    max-width: 1200px;
+    margin: 0 auto; /* Center the grid on the page */
+}
+
+/* Individual post card */
+.individual-post {
+    background-color: #fff; /* White background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: box-shadow 0.3s ease; /* Smooth hover effect */
+    cursor: pointer;
+    text-align: left; /* Align text to the left */
+}
+
+/* Hover effect for individual posts */
+.individual-post:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Elevate on hover */
+}
+
+/* Post title */
+.individual-post p:first-child {
+    font-family: 'Times New Roman', serif; /* Medium-like serif font */
+    font-size: 20px;
+    font-weight: bold;
+    color: #333; /* Dark text for title */
+    margin-bottom: 10px; /* Space between title and author */
+}
+
+/* Post author */
+.individual-post p:nth-child(2) {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #777; /* Lighter gray for the author */
+}
+
+/* Links */
+.individual-post a {
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Keep the color */
+}
+
+.individual-post a:hover {
+    color: #1a73e8; /* Medium-like blue on hover */
+}
+
+/* Responsive design: Stack items on smaller screens */
+@media (max-width: 768px) {
+    .posts-container {
+        grid-template-columns: 1fr; /* Stack posts in one column on small screens */
+        gap: 16px;
+    }
+
+    .individual-post {
+        padding: 16px;
+    }
+}
