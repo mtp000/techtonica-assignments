@@ -35,7 +35,7 @@ function PostForm() {
             
             <form onSubmit={handleSubmit}>
                 <button className="header-button" type="submit">Publish</button>
-                <div className="input-box" required>
+                <div className="input-box">
                     <input 
                         type="text"
                         placeholder="Title"
@@ -55,7 +55,7 @@ function PostForm() {
                     />
                 </div>
                 
-                <div className="text-box" required>
+                <div className="text-box">
                     <textarea
                         value={content}
                         placeholder="Tell your story..."
