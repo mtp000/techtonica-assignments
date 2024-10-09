@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from 'axios';
+import "./postForm.css"
 
 function PostForm() {
     const [title, setTitle] = useState("");
@@ -12,7 +13,7 @@ function PostForm() {
         e.preventDefault();
 
         try {
-            const response = await axios.post("http://localhost:5000/write", {
+            const response = await axios.post("http://localhost:5000/posts/write", {
                 title,
                 author,
                 content,
@@ -47,7 +48,7 @@ function PostForm() {
                 <div className="input-box">
                     <input
                         type="text"
-                        placeholder="Author"
+                        placeholder="Author (optional)"
                         value={author}
                         onChange={(e) => setAuthor(e.target.value)}
                         required
