@@ -51,7 +51,6 @@ function PostForm() {
                         placeholder="Author (optional)"
                         value={author}
                         onChange={(e) => setAuthor(e.target.value)}
-                        required
                     />
                 </div>
                 
