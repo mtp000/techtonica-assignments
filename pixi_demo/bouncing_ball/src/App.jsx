@@ -38,8 +38,7 @@ const Ball = ({ speed, onClick }) => {
       y={position.y}
       width={50}
       height={50}
-      interactive={true}
-      buttonMode={true} // Change cursor on hover
+      eventMode='dynamic'
       pointerdown={onClick} // Handle click events
       anchor={0.5} // Anchor the sprite at its center
       hitArea={new PIXI.Rectangle(0, 0, 50, 50)} // Define hit area for clicks
